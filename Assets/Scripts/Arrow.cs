@@ -4,8 +4,29 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    [SerializeField] GameObject hitVFX;
+    [SerializeField] AudioClip hitSFX;
+
+    bool isDestroyed;
+
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(isDestroyed) {return;}
+
+        isDestroyed = true;
         Destroy(gameObject);
+
+        AudioSource.PlayClipAtPoint(hitSFX, transform.position, 0.5f);
+
+        if(other.tag == "Wall" || other.tag =="Obstacle")
+        {
+            GameObject instance = Instantiate(hitVFX, transform.position, transform.rotation);
+            Destroy(instance, 1f);
+        }
+
+        if(other.tag == "Enemy")
+        {
+            other.GetComponent<EnemyHealth>().RecieveDamage(true);
+        }
     }
 }

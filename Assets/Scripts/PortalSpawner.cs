@@ -11,6 +11,8 @@ public class PortalSpawner : MonoBehaviour
     PortalSpawnPoint[] allSpawnPoints;
     bool isPortalSpawned;
 
+    int lastIndex;
+
     void Awake()
     {
         allSpawnPoints = FindObjectsOfType<PortalSpawnPoint>();
@@ -33,7 +35,16 @@ public class PortalSpawner : MonoBehaviour
     {
         if (isPortalSpawned) {return;}
 
-        int index = Random.Range(0, allSpawnPoints.Length);
+        int index;
+
+        do
+        {
+            index = Random.Range(0, allSpawnPoints.Length);
+        }
+        while(index == lastIndex);
+
+        lastIndex = index;
+
         Instantiate(portal, allSpawnPoints[index].transform.position, allSpawnPoints[index].transform.rotation);
 
         isPortalSpawned = true;

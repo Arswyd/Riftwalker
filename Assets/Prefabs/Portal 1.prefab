@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 876360495517419492}
   - component: {fileID: 6899044037522165273}
   - component: {fileID: 6266590345506118450}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Portal 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 6196136744765434004}
   - component: {fileID: 3673532724957154642}
   - component: {fileID: 2570773988723844067}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -97,10 +97,12 @@ GameObject:
   - component: {fileID: 5214170722871223330}
   - component: {fileID: 176388335}
   - component: {fileID: 176388337}
+  - component: {fileID: 1941786210}
   - component: {fileID: 176388338}
+  - component: {fileID: 1589644197}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,6 +205,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &1941786210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222414197291314021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06967fcfdfd2e44bb7511ae25715f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDamageSprite: {fileID: 21300000, guid: 83fef10161a4d0543b29dd565e142b57, type: 3}
+  playerLooseArrowSprite: {fileID: 21300000, guid: be484a0ec6e311242b3c5c394e018ecc, type: 3}
 --- !u!114 &176388338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,6 +234,23 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7427877770340588352, guid: 168804108536ad043b90f27d2396821f, type: 3}
   projectileSpeed: 10
   projectileLifeTime: 5
+  timeBetweendShots: 1
+--- !u!114 &1589644197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3222414197291314021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745c6f906572c48469dd372d69bebf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 100
+  damageRecieved: 10
+  healthSlider: {fileID: 0}
+  playerDamageSFX: {fileID: 8300000, guid: b150404a16367364ebba9d3751f4c8c8, type: 3}
 --- !u!1 &5547256555612211537
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,3 +298,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7427877770340588352, guid: 168804108536ad043b90f27d2396821f, type: 3}
   projectileSpeed: 10
   projectileLifeTime: 5
+  timeBetweendShots: 2

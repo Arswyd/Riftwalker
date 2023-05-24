@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 1f;
-    [SerializeField] ParticleSystem arrowVFX;
+    [SerializeField] bool debug;
 
     Vector2 moveInput;
     Vector2 mousePosition;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D myRigidbody;
     Camera cam;
     PlayerAttack playerAttack;
+
 
     void Awake()
     {
@@ -51,6 +52,15 @@ public class PlayerMovement : MonoBehaviour
     void OnFire()
     {
         playerAttack.ShootProjectile();
+    }
+
+    void OnDrawGizmos()
+    {
+        if(debug)
+        {
+            Vector2 screenPosition = cam.ScreenToWorldPoint(mousePosition);
+            Gizmos.DrawLine(myRigidbody.position, screenPosition);
+        }
     }
 
 }

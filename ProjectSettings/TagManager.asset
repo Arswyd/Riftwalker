@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Arrow
   - Enemy
+  - Wall
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Arrows
   - PostProcessing
   - CameraBounds
-  - 
+  - Portal
   - 
   - 
   - 

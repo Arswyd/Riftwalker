@@ -5,30 +5,46 @@ using Pathfinding;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float enemyHealth = 100f;
+    [SerializeField] GameObject deathVFX;
+
+    [SerializeField] float dampening = 0.1f;
+    [SerializeField] float slowAmount = 0.5f;
+    Rigidbody2D myRigidbody;
 
     AIDestinationSetter aIDestinationSetter;
-    EnemyDefenseHandler enemyDefenseHandler;
+    AIPath aIPath;
+    ScoreKeeper scoreKeeper;
 
     float damageRecieved;
+    float originalSpeed;
 
     void Awake()
     {
         aIDestinationSetter = GetComponent<AIDestinationSetter>();
         aIDestinationSetter.target = FindObjectOfType<PlayerMovement>().transform;
-        enemyDefenseHandler = FindObjectOfType<EnemyDefenseHandler>();
-        damageRecieved = enemyHealth;
+        aIPath = GetComponent<AIPath>();
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+        originalSpeed = aIPath.maxSpeed;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void RecieveDamage(bool isIncreasingScore)
     {
-        if (other.tag == "Arrow")
-        {
-            enemyHealth -= damageRecieved * (1f / enemyDefenseHandler.GetDefenseLevel());
-            //Debug.Log(enemyHealth);
+        if(isIncreasingScore)
+            scoreKeeper.IncreaseCurrentScore();
+            
+        Destroy(gameObject);
+        GameObject instance = Instantiate(deathVFX, transform.position, transform.rotation);
+        Destroy(instance, 1f);
+    }
 
-            if (enemyHealth <= 0)
-                Destroy(gameObject);
-        }
+    void Update()
+    {
+        aIPath.maxSpeed += Time.deltaTime * dampening;
+    }
+
+    void OnEnable()
+    {
+       aIPath.maxSpeed = Mathf.Max(originalSpeed, aIPath.maxSpeed - slowAmount); 
     }
 }
