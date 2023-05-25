@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aee04182110ccf4c9bb89d6f4d69ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
-  arrowVFX: {fileID: 0}
+  movementSpeed: 3.5
+  debug: 0
 --- !u!114 &5214170722871223330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,11 +184,11 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8e0ff79b2511b0440a54286fc362464b, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &176388337
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -218,7 +218,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamageSprite: {fileID: 21300000, guid: 83fef10161a4d0543b29dd565e142b57, type: 3}
-  playerLooseArrowSprite: {fileID: 21300000, guid: be484a0ec6e311242b3c5c394e018ecc, type: 3}
+  playerLooseSprite: {fileID: 21300000, guid: be484a0ec6e311242b3c5c394e018ecc, type: 3}
+  playerLooseDamagedSprite: {fileID: 21300000, guid: 3e60efa38a6fec94bb5435c72cef25f2, type: 3}
 --- !u!114 &176388338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7427877770340588352, guid: 168804108536ad043b90f27d2396821f, type: 3}
   projectileSpeed: 10
   projectileLifeTime: 5
-  timeBetweendShots: 1
+  timeBetweenShots: 0.5
 --- !u!114 &1589644197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,4 +299,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7427877770340588352, guid: 168804108536ad043b90f27d2396821f, type: 3}
   projectileSpeed: 10
   projectileLifeTime: 5
-  timeBetweendShots: 2
+  timeBetweenShots: 0.5
