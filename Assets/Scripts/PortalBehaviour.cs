@@ -9,10 +9,15 @@ public class PortalBehaviour : MonoBehaviour
     PortalSpawner portalSpawner;
     bool isActive;
 
+    AudioManager audioManager;
+    PlayerHealth playerHealth;
+
     void Awake()
     {
         enemySpawner = FindObjectOfType<EnemySpawner>();
         portalSpawner = FindObjectOfType<PortalSpawner>();
+        audioManager = FindObjectOfType<AudioManager>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
     void Start()
@@ -24,6 +29,8 @@ public class PortalBehaviour : MonoBehaviour
     {
         if (other.tag == "Player" && isActive)
         {
+            playerHealth.SetInvincibility();
+            audioManager.ModifySourcePitch();
             enemySpawner.SwitchRealms();
             portalSpawner.SetIsPortalSpawned(false);
             Destroy(gameObject);

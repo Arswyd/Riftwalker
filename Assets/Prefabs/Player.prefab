@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 100
-  damageRecieved: 10
+  damageRecieved: 20
   healthSlider: {fileID: 0}
   playerDamageSFX: {fileID: 8300000, guid: b150404a16367364ebba9d3751f4c8c8, type: 3}
 --- !u!1 &5547256555612211537

@@ -134,9 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bf6a2919c2a2a4392700a0ab507e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 100
   deathVFX: {fileID: 2406403832988272255, guid: f1fec9ca9311fdf429f13d47dea31c83, type: 3}
-  knockbackStrenght: 1500
   dampening: 0.05
   slowAmount: 0.5
 --- !u!58 &1151432442905112314
@@ -154,7 +152,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.45
 --- !u!50 &-3682233268815406211
 Rigidbody2D:
   serializedVersion: 4

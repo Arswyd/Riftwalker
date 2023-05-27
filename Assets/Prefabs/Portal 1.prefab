@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4bc813be7aa1d408d34eb638f9d9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activationTime: 2
 --- !u!58 &6266590345506118450
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -61,7 +62,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
 --- !u!1 &6939280704058356869
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +107,7 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 0
+  cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1

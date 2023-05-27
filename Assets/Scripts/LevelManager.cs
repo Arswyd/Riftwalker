@@ -8,10 +8,12 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     ScoreKeeper scoreKeeper;
+    AudioManager audioManager;
 
     void Awake()
     {
         scoreKeeper = FindObjectOfType<ScoreKeeper>();
+        audioManager = FindObjectOfType<AudioManager>();
         Debug.Assert(scoreKeeper != null);
     }
 
@@ -19,6 +21,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Assert(scoreKeeper != null);
         scoreKeeper.ResetCurrentScore();
+        audioManager.SwapAudioSources();
         SceneManager.LoadScene(1);
     }
 
@@ -26,5 +29,6 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         scoreKeeper.UpdateHighScore();
+        audioManager.SwapAudioSources();
     }
 }

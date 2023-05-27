@@ -10,11 +10,13 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float damageRecieved = 10f;
     [SerializeField] Slider healthSlider;
     [SerializeField] AudioClip playerDamageSFX;
+    [SerializeField] float invincibilityTime = 2f;
 
     LevelManager levelManager;
     CameraShake cameraShake;
     PlayerSpriteHandler playerSpriteHandler;
     bool isInvincible = false;
+    float timeElapsed;
 
     void Awake()
     {
@@ -29,12 +31,26 @@ public class PlayerHealth : MonoBehaviour
         healthSlider.value = playerHealth;
     }
 
+    void Update()
+    {
+        if(isInvincible)
+        {
+            if (invincibilityTime < timeElapsed)
+            {
+                isInvincible = false;
+                timeElapsed = 0f;
+            }
+
+            timeElapsed += Time.deltaTime;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Enemy" && !isInvincible)
         {
             other.gameObject.GetComponent<EnemyHealth>().RecieveDamage(false);
-            StartCoroutine(RecieveDamage());
+            RecieveDamage();
             if(playerHealth <= 0)
             {
                 levelManager.LoadGameOver();
@@ -42,15 +58,19 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    IEnumerator RecieveDamage()
+    void RecieveDamage()
     {
+        SetInvincibility();
         playerHealth -= damageRecieved;
-        isInvincible = true;
         healthSlider.value = playerHealth;
         playerSpriteHandler.SetSpriteDamaged();
         cameraShake.Play();
         AudioSource.PlayClipAtPoint(playerDamageSFX, transform.position);
-        yield return new WaitForSeconds(0.1f);
-        isInvincible = false;
+
+    }
+
+    public void SetInvincibility()
+    {
+        isInvincible = true;
     }
 }

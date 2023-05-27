@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3431306927024213123}
   - component: {fileID: 3431306927024213120}
   - component: {fileID: 3431306927024213122}
-  - component: {fileID: 24553760}
   m_Layer: 0
   m_Name: Gameplay manager
   m_TagString: Untagged
@@ -46,7 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5bb7b9e25bca40b7bfd38ebc36cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 2.5
+  spawnTime: 2
+  spawnTimeDecrament: 0.1
+  decramentTime: 4
+  spawnTimeIncrement: 0.3
   enemy: {fileID: 1151432442905112306, guid: fcc65b96c3b59b447aea50479193851a, type: 3}
   realm1: {fileID: 0}
   realm2: {fileID: 0}
@@ -63,19 +65,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191cca64936200e439c78bc6da248722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 5
+  spawnTime: 4
   portal: {fileID: 4714547647697114620, guid: c3fc709371d65a746846c244fa937091, type: 3}
---- !u!114 &24553760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3431306927024213121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1189b6cc1f67e7c418ab364df12e3c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defenseLevelTime: 3
-  defenseLevelText: {fileID: 0}

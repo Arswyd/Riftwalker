@@ -9,14 +9,25 @@ public class PortalSpawner : MonoBehaviour
 
     float passedTime;
     PortalSpawnPoint[] allSpawnPoints;
+    List<Vector2> weightedSpawnPointList = new List<Vector2>();
     bool isPortalSpawned;
 
     int lastIndex;
+
+    Vector2 lastPosition;
 
     void Awake()
     {
         allSpawnPoints = FindObjectsOfType<PortalSpawnPoint>();
         //Debug.Log(allSpawnPoints.Length);
+        foreach(PortalSpawnPoint p in allSpawnPoints)
+        {
+            for(int i = 0; i < p.GetWeight(); i++)
+            {
+                weightedSpawnPointList.Add(p.transform.position);
+                Debug.Log(p.GetWeight());
+            }
+        }
     }
 
     void Update()
@@ -35,7 +46,7 @@ public class PortalSpawner : MonoBehaviour
     {
         if (isPortalSpawned) {return;}
 
-        int index;
+/*         int index;
 
         do
         {
@@ -45,7 +56,19 @@ public class PortalSpawner : MonoBehaviour
 
         lastIndex = index;
 
-        Instantiate(portal, allSpawnPoints[index].transform.position, allSpawnPoints[index].transform.rotation);
+        Instantiate(portal, allSpawnPoints[index].transform.position, allSpawnPoints[index].transform.rotation); */
+
+        Vector2 position;
+
+        do
+        {
+            position = weightedSpawnPointList[Random.Range(0, weightedSpawnPointList.Count)];
+        }
+        while(position == lastPosition);
+
+        lastPosition = position;
+
+        Instantiate(portal, position, transform.rotation);
 
         isPortalSpawned = true;
     }

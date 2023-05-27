@@ -6,7 +6,8 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] float spawnTime = 10f;
+    [SerializeField] float minSpawnTime = 10f;
+    [SerializeField] float maxSpawnTime = 10f;
     [SerializeField] float spawnTimeDecrament = 0.1f;
     [SerializeField] float decramentTime = 1f;
     [SerializeField] float spawnTimeIncrement = 2f;
@@ -14,20 +15,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject realm1;
     [SerializeField] GameObject realm2;
     [SerializeField] GameObject spawnEffect;
+    [SerializeField] bool spawnTimeDebug;
 
     bool isPrimaryRealm = true;
     float passedTimeBetweenSpawns;
     float passedTimeBetweenDecraments;
     EnemySpawnPoint[] allSpawnPoints;
     PostProcessVolume volume;
-    float originalSpawnTime;
+    float spawnTime;
     int lastIndex;
 
     void Awake()
     {
         allSpawnPoints = FindObjectsOfType<EnemySpawnPoint>();
         volume = FindObjectOfType<PostProcessVolume>();
-        originalSpawnTime = spawnTime;
+        spawnTime = maxSpawnTime;
     }
 
     void Update()
@@ -43,7 +45,9 @@ public class EnemySpawner : MonoBehaviour
 
         if (passedTimeBetweenDecraments >= decramentTime)
         {
-            spawnTime = Mathf.Max(0.5f, spawnTime - spawnTimeDecrament);
+            spawnTime = Mathf.Max(minSpawnTime, spawnTime - spawnTimeDecrament);
+            if(spawnTimeDebug)
+                Debug.Log(spawnTime);
             passedTimeBetweenDecraments = 0;
         }
 
@@ -84,7 +88,10 @@ public class EnemySpawner : MonoBehaviour
         realm1.SetActive(!isPrimaryRealm);
         isPrimaryRealm = !isPrimaryRealm;
 
-        spawnTime = Mathf.Min(originalSpawnTime, spawnTime + spawnTimeIncrement);
+        spawnTime = Mathf.Min(maxSpawnTime, spawnTime + spawnTimeIncrement);
+        if(spawnTimeDebug)
+            Debug.Log(spawnTime);
+        passedTimeBetweenDecraments = 0;
     }
 
     IEnumerator StartSpawning(int index, bool isOnlyCurrentRealm)
