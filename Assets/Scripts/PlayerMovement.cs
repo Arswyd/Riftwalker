@@ -14,12 +14,14 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D myRigidbody;
     Camera cam;
     PlayerAttack playerAttack;
+    PlayerHealth playerHealth;
 
 
     void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        playerAttack = FindObjectOfType<PlayerAttack>();
+        playerAttack = GetComponent<PlayerAttack>();
+        playerHealth = GetComponent<PlayerHealth>();
         cam = Camera.main;
     }
 
@@ -63,4 +65,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnHeal()
+    {
+        playerHealth.HealPlayer();
+    }
 }

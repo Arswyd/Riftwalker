@@ -7,7 +7,14 @@ public class Arrow : MonoBehaviour
     [SerializeField] GameObject hitVFX;
     [SerializeField] AudioClip hitSFX;
 
+    PlayerHealth playerHealth;
+
     bool isDestroyed;
+
+    void Awake()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,6 +34,7 @@ public class Arrow : MonoBehaviour
         if(other.tag == "Enemy")
         {
             other.GetComponent<EnemyHealth>().RecieveDamage(true);
+            playerHealth.IncreaseMana();
         }
     }
 }

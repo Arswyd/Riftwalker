@@ -9,7 +9,6 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float projectileLifeTime = 5f;
     [SerializeField] float timeBetweenShots = 0.5f;
     PlayerSpriteHandler playerSpriteHandler;
-    //float timeBetweenShots = 0.5f;
 
     bool canShoot = true;
 

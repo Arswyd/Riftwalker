@@ -9,7 +9,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float minSpawnTime = 10f;
     [SerializeField] float maxSpawnTime = 10f;
     [SerializeField] float spawnTimeDecrament = 0.1f;
-    [SerializeField] float decramentTime = 1f;
+    [SerializeField] float decramentTime1 = 1f;
+    [SerializeField] float decramentTime2 = 3f;
+    [SerializeField] float decramentTime3 = 6f;
     [SerializeField] float spawnTimeIncrement = 2f;
     [SerializeField] GameObject enemy;
     [SerializeField] GameObject realm1;
@@ -43,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
             passedTimeBetweenSpawns = 0;
         }
 
-        if (passedTimeBetweenDecraments >= decramentTime)
+        if (passedTimeBetweenDecraments >= ((spawnTime > 2f) ? decramentTime1 : (spawnTime > 1f) ? decramentTime2 : decramentTime3))
         {
             spawnTime = Mathf.Max(minSpawnTime, spawnTime - spawnTimeDecrament);
             if(spawnTimeDebug)
@@ -110,5 +112,11 @@ public class EnemySpawner : MonoBehaviour
         }
 
         Destroy(instance);
+    }
+
+    public void DecreaseSpawnTime()
+    {
+        spawnTime = Mathf.Max(minSpawnTime, spawnTime - 0.5f);
+        passedTimeBetweenDecraments = 0;
     }
 }
